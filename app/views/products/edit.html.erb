@@ -1,1 +1,11 @@
-<H1>Edit Form Goes Here</H1>
+<div class="container jumbotron">
+<%= form_for @product do |f| %>
+   <%= f.text_field :name %>
+   <%= f.text_area :description %>
+   <%= f.text_field :min_price %>
+   <%= f.text_area :total_donated_amount %>
+   <%= f.text_field :inventory_amount %>
+   <%= f.text_area :avatar %>
+   <%= f.submit "Save Product" %>
+ <% end %>
+ </div>

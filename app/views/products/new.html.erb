@@ -1,3 +1,36 @@
+<div class=" container jumbotron">
+
 <h1>New Product</h1>
 
+<%= form_for @product do |f| %>
 
+  <div class="row">
+    <div class="my-input"><%= f.text_field :name, placeholder:' Name' %></div>
+  </div>
+
+  <div class="row">
+    <div class="my-input"><%= f.text_field :description, placeholder:' Description' %></div>
+  </div>
+
+  <div class="row">
+    <div class="my-input"><%= f.text_field :min_price, placeholder:' Minimum Price' %></div>
+  </div>
+
+  <div class="row">
+    <div class="my-input"><%= f.text_field :total_donated_amount, placeholder:' Total Amount Donated' %></div>
+  </div>
+  <div class="row">
+    <div class="my-input"><%= f.text_field :inventory_amount, placeholder:' Amount remaining' %></div>
+  </div><div class="row">
+
+   <!-- REMINDER PIC NEEDS TO BE ENTERED HERE!!!! -->
+   <!-- A PIC IS NOT A STRING, IN THE REAL WORLD!!!! -->
+    <div class="my-input"><%= f.text_field :avatar, placeholder:' Pic Here' %></div>
+  </div>
+  <div class="row">
+    <br>
+  <%= f.submit 'Sign Up!' %>
+  </div>
+  <% end %>
+
+</div>
