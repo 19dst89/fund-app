@@ -14,6 +14,8 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+# Materialize
+gem 'materialize-sass'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -35,8 +37,7 @@ gem 'jbuilder', '~> 2.5'
 # Devise for user stuff
 gem 'devise'
 
-# Materialize
-gem 'materialize-sass'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
