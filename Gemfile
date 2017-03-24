@@ -15,7 +15,11 @@ gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Materialize
-gem 'materialize-sass'
+# gem 'materialize-sass'
+
+# jQuery Turbolinks
+gem 'jquery-turbolinks'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
