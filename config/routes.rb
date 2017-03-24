@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  get 'homerails/routes'
+
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
-  root to: "home#index"
+  root to: "users#index"
 end
