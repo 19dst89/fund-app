@@ -13,12 +13,10 @@ def show
   @product = Product.find_by_id(product_id)
 end
 
-def create
-  @product = Product.new(product_params)
-    if Product.save
-      redirect_to product_path
-    end
-end
+  def create
+    @product = Product.create(product_params)
+    redirect_to @product
+  end
 
 def edit
   product_id = params[:id]

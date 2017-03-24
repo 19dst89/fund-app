@@ -1,1 +1,13 @@
-<h1>Show one Page</h1>
+
+<div class="container">
+  <h2 class="article-title"><%= @product.name %></h2>
+  <h6>Description: <%= @product.description %></h6>
+  <h6>Minimum Price: <%= @product.min_price %>
+  <hr>
+  
+
+  <span><%= link_to "Edit Product", edit_product_path(@product.id) %></span>
+
+  <hr>
+  <%= button_to " Delete Product ", {action:"destroy", id: @product.id}, method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
