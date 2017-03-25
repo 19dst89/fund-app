@@ -11,16 +11,22 @@ Rails.application.routes.draw do
 
   # Product Routes
   get "/products", to: "products#index", as: "products"
-    # New Product
+
   get "/products/new", to: "products#new", as: "new_product"
-    # Show Product
+
   get "/products/:id", to: "products#show", as: "product"
-    # Create/Save Post Product
+
   post "/products", to: "products#create"
-    # Edit Product Route
+
   get "/products/:id/edit", to: "products#edit", as: "edit_product"
-    # Update Product
+
   patch "/products/:id", to: "products#update"
-    # Remove/Delete Product
+
   delete "/products/:id", to: "products#destroy"
+
+
+  # Stripe Charges
+  resources :charges
+
+
 end

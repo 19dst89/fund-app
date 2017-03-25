@@ -38,10 +38,11 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Devise for user stuff
+# Devise for user authentication and authorization
 gem 'devise'
 
-
+# Stripe gem for payment processing
+gem 'stripe'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
