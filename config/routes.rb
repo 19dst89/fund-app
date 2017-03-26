@@ -23,4 +23,12 @@ Rails.application.routes.draw do
   patch "/products/:id", to: "products#update"
     # Remove/Delete Product
   delete "/products/:id", to: "products#destroy"
+
+
+  # Transactions Routes
+  get "/transactions", to: "transactions#index", as: "transactions"
+    # New Transaction
+  get "/transactions/new", to: "transactions#new", as: "new_transaction"
+    # Show Transaction
+  get "/transactions/:id", to: "transactions#show", as: "transaction"
 end
