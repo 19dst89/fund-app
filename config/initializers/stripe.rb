@@ -1,7 +1,7 @@
 Rails.configuration.stripe = {
-  # this should be set to ENV['PUBLISHABLE_KEY'] and ENV['SECRET_KEY'] on GitHub
-  :publishable_key => ENV['PUBLISHABLE_KEY'],
-  :secret_key      => ENV['SECRET_KEY']
+  # this should be set to ENV['PUBLISHABLE_KEY'] and ENV['SECRET_KEY'] once deployed for actual payments
+  :publishable_key => Rails.application.secrets.stripe_publishable_key,
+  :secret_key      => Rails.application.secrets.stripe_secret_key
 }
 
-Stripe.api_key = Rails.configuration.stripe[:secret_key]
+Stripe.api_key = Rails.application.secrets.stripe_secret_key
