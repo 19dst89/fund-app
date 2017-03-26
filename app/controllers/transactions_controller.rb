@@ -14,13 +14,14 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new
     # currently hardcoding product until i figure out how to grab it dynamically
     @product = Product.first
+    @user = User.find_by_id(current_user.id)
   end
 
   def create
     @transaction = Transaction.new(transaction_params)
-    @transaction.users_id = current_user.id
+    @transaction.user_id = current_user.id
     # currently hardcoding product id until i figure out how to grab it dynamically
-    @transaction.products_id = Product.first.id
+    @transaction.product_id = Product.first.id
     if @transaction.save
       redirect_to @transaction
     end
