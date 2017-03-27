@@ -1,5 +1,3 @@
-
-
 <%= form_tag charges_path do %>
   <article>
     <% if flash[:error].present? %>
@@ -17,17 +15,17 @@
 <div class="form-group">
  <div class="form-group">
    <%= f.label :name %>
-   <%= f.text_field :customer_name, placeholder: "Full Name", class: "form-control", autofocus: true, :required => true %>
+   <%= f.text_field :customer_name, placeholder: "Full Name", class: "form-control name-input", autofocus: true, :required => true %>
  </div>
  <div class="form-group">
    <%= f.label :customer_email %>
-   <%= f.text_field :customer_email, placeholder: "Email", class: "form-control", autofocus: true, :required => true %>
+   <%= f.text_field :customer_email, placeholder: "Email", class: "form-control cust-email-input", autofocus: true, :required => true %>
  </div>
 
   <!-- THIS DOES NOT CHANGE THE AMOUNT BEING CHARGED YET -->
  <div class="form-group">
    <%= f.label :amount %>
-   <%= f.text_field :amount, placeholder: "Amount", class: "form-control", autofocus: true, :required => true %>
+   <%= f.text_field :amount, placeholder: "Amount", class: "form-control amt-input", autofocus: true, :required => true %>
  </div>
   <!-- END OF AMOUNT INPUT -->
 
@@ -39,5 +37,35 @@
 <% end %>
 
 
-<script src="https://js.stripe.com/v3/"></script>
+<script src="https://js.stripe.com/v3/">
+
+$('#donateButton').on('click', function(e) {
+  e.preventDefault();
+
+  $('#error_explanation').html('');
+
+  var amount = $('input#amount').val();
+  amount = amount.replace(/\$/g, '').replace(/\,/g, '')
+
+  amount = parseFloat(amount);
+
+  if ()
+    if (isNaN(amount)) {
+      $('#error_explanation').html('<p>Please enter a valid amount in USD ($).</p>');
+    }
+    else if (amount < 5.00) {
+      $('#error_explanation').html('<p>Donation amount must be at least $5.</p>');
+    }
+    else {
+      amount = amount * 100; // Needs to be an integer!
+      handler.open({
+        amount: Math.round(amount)
+      })
+    }
+
+});
+
+
+
+</script>
 
