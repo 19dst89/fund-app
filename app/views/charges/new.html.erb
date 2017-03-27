@@ -1,16 +1,27 @@
+<<<<<<< HEAD
+=======
+
+<!-- testing -->
+
+
+>>>>>>> 227f771b13407f1704407b9b8614d0e9ad1cd3a2
 <%= form_tag charges_path do %>
-  <article>
+  <div id="error_explanation">
     <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
-      </div>
+      <p><%= flash[:error] %></p>
     <% end %>
-<!--     <label class="amount">
-      <span>Amount: $5.00</span> -->
-    </label>
+  </div>
+  <article>
+    <%= label_tag(:amount, 'Donation Amount:') %>
+    <%= text_field_tag(:amount) %>
   </article>
+  <article>
+    <%= hidden_field_tag(:stripeToken) %>
+  </article>
+  <button id='donateButton'>Donate</button>
 <% end %>
 
+<<<<<<< HEAD
 <%= form_for @charge do |f| %>
 <div class="form-group">
  <div class="form-group">
@@ -68,4 +79,43 @@ $('#donateButton').on('click', function(e) {
 
 
 </script>
+=======
+>>>>>>> 227f771b13407f1704407b9b8614d0e9ad1cd3a2
 
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script>
+var handler = StripeCheckout.configure({
+  key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+  locale: 'auto',
+  name: 'Project Fun(d)raiser',
+  description: 'One-time donation',
+  token: function(token) {
+    $('input#stripeToken').val(token.id);
+    $('form').submit();
+  }
+});
+
+$('#donateButton').on('click', function(e) {
+  e.preventDefault();
+
+  $('#error_explanation').html('');
+
+  var amount = $('input#amount').val();
+  amount = amount.replace(/\$/g, '').replace(/\,/g, '')
+
+  amount = parseFloat(amount);
+
+  if (isNaN(amount)) {
+    $('#error_explanation').html('<p>Please enter a valid amount in USD ($).</p>');
+  }
+  else if (amount < 5.00) {
+    $('#error_explanation').html('<p>Donation amount must be at least $5.</p>');
+  }
+  else {
+    amount = amount * 100; // Needs to be an integer!
+    handler.open({
+      amount: Math.round(amount)
+    })
+  }
+});
+</script>

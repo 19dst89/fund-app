@@ -1,9 +1,34 @@
-setInterval(function () {
-    var d = new Date(); //get current time
-    var seconds = d.getMinutes() * 60 + d.getSeconds(); //convet current mm:ss to seconds for easier caculation, we don't care hours.
-    var fiveMin = 60 * 5; //five minutes is 300 seconds!
-    var timeleft = fiveMin - seconds % fiveMin; // let's say now is 01:30, then current seconds is 60+30 = 90. And 90%300 = 90, finally 300-90 = 210. That's the time left!
-    var result = parseInt(timeleft / 60) + ':' + timeleft % 60; //formart seconds back into mm:ss
-    document.getElementById('test').innerHTML = result;
+// Credit goes to StackOverflow communit for this JS file.
+//
+// http://stackoverflow.com/questions/9335140/how-to-countdown-to-a-date#9335296
+//
+ 
+var end = new Date('03/30/2017 12:00 AM');
 
-}, 500) //calling it every 0.5 second to do a count down
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            document.getElementById('countdown').innerHTML = 'EXPIRED!';
+
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+
+        document.getElementById('countdown').innerHTML = days + 'days ';
+        document.getElementById('countdown').innerHTML += hours + 'hrs ';
+        document.getElementById('countdown').innerHTML += minutes + 'mins ';
+        document.getElementById('countdown').innerHTML += seconds + 'secs';
+    }
+     timer = setInterval(showRemaining, 1000);
