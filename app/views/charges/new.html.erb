@@ -1,3 +1,5 @@
+
+
 <%= form_tag charges_path do %>
   <article>
     <% if flash[:error].present? %>
@@ -21,10 +23,13 @@
    <%= f.label :customer_email %>
    <%= f.text_field :customer_email, placeholder: "Email", class: "form-control", autofocus: true, :required => true %>
  </div>
+
+  <!-- THIS DOES NOT CHANGE THE AMOUNT BEING CHARGED YET -->
  <div class="form-group">
    <%= f.label :amount %>
    <%= f.text_field :amount, placeholder: "Amount", class: "form-control", autofocus: true, :required => true %>
  </div>
+  <!-- END OF AMOUNT INPUT -->
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
