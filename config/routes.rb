@@ -25,8 +25,18 @@ Rails.application.routes.draw do
   delete "/products/:id", to: "products#destroy"
 
 
+
   # Stripe Charges
   resources :charges
 
+
+  # Transactions Routes
+  get "/transactions", to: "transactions#index", as: "transactions"
+    # New Transaction
+  get "/transactions/new", to: "transactions#new", as: "new_transaction"
+    # Show Transaction
+  get "/transactions/:id", to: "transactions#show", as: "transaction"
+    # Make New Transaction
+  post "/transactions", to: "transactions#create"
 
 end
