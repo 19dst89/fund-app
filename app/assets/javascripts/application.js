@@ -16,3 +16,4 @@
 //= require jquery_ujs
 //= require countdown
 //= require turbolinks
+ 
