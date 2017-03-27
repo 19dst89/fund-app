@@ -55,7 +55,7 @@ class ChargesController < ApplicationController
 
   def show
     @charge = Charge.find_by_id(params[:id])
-    explode
+ 
   end
 
   # private
