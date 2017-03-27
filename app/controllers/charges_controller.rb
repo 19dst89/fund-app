@@ -33,8 +33,8 @@ class ChargesController < ApplicationController
 
   private
 
-  # def charge_params
-  #   params.require(:charge).permit(:customer, :amount, :email, :description, :currency)
-  # end
+  def charge_params
+    params.require(:charge).permit(:customer_name, :amount, :customer_email, :description, :currency)
+  end
 
 end

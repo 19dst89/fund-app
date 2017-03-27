@@ -5,10 +5,26 @@
         <p><%= flash[:error] %></p>
       </div>
     <% end %>
-    <label class="amount">
-      <span>Amount: $5.00</span>
+<!--     <label class="amount">
+      <span>Amount: $5.00</span> -->
     </label>
   </article>
+<% end %>
+
+<%= form_for @charge do |f| %>
+<div class="form-group">
+ <div class="form-group">
+   <%= f.label :name %>
+   <%= f.text_field :customer_name, placeholder: "Full Name", class: "form-control", autofocus: true, :required => true %>
+ </div>
+ <div class="form-group">
+   <%= f.label :customer_email %>
+   <%= f.text_field :customer_email, placeholder: "Email", class: "form-control", autofocus: true, :required => true %>
+ </div>
+ <div class="form-group">
+   <%= f.label :amount %>
+   <%= f.text_field :amount, placeholder: "Amount", class: "form-control", autofocus: true, :required => true %>
+ </div>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
@@ -16,4 +32,7 @@
           data-amount="500"
           data-locale="auto"></script>
 <% end %>
+
+
+<script src="https://js.stripe.com/v3/"></script>
 
