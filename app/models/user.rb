@@ -1,5 +1,8 @@
 class User < ApplicationRecord
 
+  has_many :charges
+  # has_many :products, through: :charges
+
   has_many :transactions
   has_many :products, through: :transactions
 
