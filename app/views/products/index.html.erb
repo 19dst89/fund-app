@@ -1,6 +1,17 @@
 <h1>All of the Products</h1>
 
+<ul>
 <% @products.each do |product| %>
-  <%= product.name %>
-  <%= product.min_price %>
+  <li><%= product.name %></li>
+  <li><%= product.description %></li>
+  <li>Total Donated: <%= product.total_donated_amount %></li>
+  <li>Amount Left: <%= product.inventory_amount %></li>
+  <% product.charges.each do |charge| %>
+    <ul>
+      <li>Customer Name: <%= charge.customer_name %></li>
+      <li>Donation: <%= charge.amount %></li>
+    </ul>
+  <% end %>
 <% end %>
+
+</ul>

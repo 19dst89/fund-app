@@ -2,6 +2,8 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    @users = User.all
+    @charges = Charge.all
   end
 
   def new
