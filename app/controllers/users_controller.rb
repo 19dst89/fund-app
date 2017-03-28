@@ -11,6 +11,12 @@ class UsersController < ApplicationController
     else
       @user = current_user
     end
+
+    # THIS SHOULD BE CHANGED
+    @product = Product.last
+
+    @charges = Charge.all
+
   end
 
   private

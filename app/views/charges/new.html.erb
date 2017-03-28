@@ -8,9 +8,12 @@
           <p><%= flash[:error] %></p>
         </div>
       <% end %>
-  <!--     <label class="amount">
-        <span>Amount: $5.00</span> -->
+
+      <!-- change this amount -->
+      <label class="amount">
+        <span>Amount: $5.00</span>
       </label>
+
     </article>
   <% end %>
 
@@ -57,19 +60,16 @@ var handler = StripeCheckout.configure({
     $('form').submit();
   }
 });
+
 $('#donateButton').on('click', function(e) {
   e.preventDefault();
   $('#error_explanation').html('');
   var amount = $('input#amount').val();
+
   amount = amount.replace(/\$/g, '').replace(/\,/g, '')
   amount = parseFloat(amount);
 
-  var email = $('input#cust-email').val();
-  var name = $('input#cust-name').val();
-
-
-
-  if (isNaN(amount)) {
+  if (isNaN(amount) || amount == nil) {
     $('#error_explanation').html('<p>Please enter a valid amount in USD ($).</p>');
   } else if (amount < 5.00) {
     $('#error_explanation').html('<p>Donation amount must be at least $5.</p>');

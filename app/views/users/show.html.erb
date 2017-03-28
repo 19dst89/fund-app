@@ -1,2 +1,39 @@
 <h2>Hello, <%= current_user.first_name %></h2>
 
+<div class="container">
+  <div class="row">
+    <h6 class="user-show-sub-headers col-md-3">Total Donations</h6>
+    <hr class="user-show-sub-line">
+    <%= "#{@product.total_donated_amount}" %>
+
+    <h6 class="user-show-sub-headers col-md-3">Inventory Left</h6>
+    <hr class="user-show-sub-line">
+    <%= "#{@product.inventory_amount}" %>
+
+    <h6 class="user-show-sub-headers col-md-3">Minimum Price</h6>
+    <hr class="user-show-sub-line">
+    <%= "#{@product.min_price}" %>
+  </div>
+
+</div>
+
+
+<div class="container">
+<div class="row">
+
+  <h6 class="user-show-customers col-md-9">Recent Donors</h6>
+  <hr class="user-show-long-line">
+  <% @charges.each do |charge| %>
+    <h4><%= charge.customer_name.titleize %></h4>
+
+      </div>
+    <% end %>
+
+
+
+</div>
+
+</div>
+
+
+
