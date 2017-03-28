@@ -36,6 +36,15 @@ class ChargesController < ApplicationController
     # CHANGE this once
     @product = Product.last
     @product.charges << @charge
+
+    @product = @charge.product
+    @product.total_donated_amount = @product.total_donated_amount + @charge.amount
+
+    @product.inventory_amount = @product.inventory_amount - 1
+
+    if @charge.save && @product.save
+      redirect_to root_path
+    end
   end
 
   def show
