@@ -1,0 +1,13 @@
+
+<div class="list-group">
+
+<% @charges.each do |c| %>
+  <ul>
+    <li class='list-group-item-heading'><%= c.customer_name %></li>
+    <li class='list-group-item-text'><%= c.customer_email %></li>
+    <li class='list-group-item-text'><%= c.amount %></li>
+
+  </ul>
+<% end %>
+
+</div>    
