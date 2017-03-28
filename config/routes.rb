@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
-  root to: "users#index"
+  root to: "products#index"
 
   # User Routes
   get '/users/:id', to: 'users#show', as: 'user'
