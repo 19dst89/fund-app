@@ -1,6 +1,60 @@
 <h2>Hello, <%= current_user.first_name %></h2>
 
 <div class="container">
+    <div class="row">
+
+        <div class="col-sm-6">
+                         <div class="panel panel-success">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">Graph</h3>
+                            </div>
+                            <div class="panel-body">
+                              <img src="http://dummyimage.com/600x500/000/fff&amp;text=Graph" class="img-responsive">
+                            </div>
+                          </div>
+            </div>
+
+
+
+        <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-12">
+                          <div class="panel panel-primary">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">Panel title</h3>
+                            </div>
+                            <div class="panel-body">
+                              Panel content
+                            </div>
+                          </div>
+                        </div>
+                    <div class="col-sm-12">
+                          <div class="panel panel-success">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">Panel title</h3>
+                            </div>
+                            <div class="panel-body">
+                              Panel content
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-sm-12">
+                          <div class="panel panel-success">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">Panel title</h3>
+                            </div>
+                            <div class="panel-body">
+                              Panel content
+                            </div>
+                          </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
   <div class="row">
     <h6 class="user-show-sub-headers col-md-3">Total Donations</h6>
     <hr class="user-show-sub-line">
@@ -24,15 +78,20 @@
   <h6 class="user-show-customers col-md-9">Recent Donors</h6>
   <hr class="user-show-long-line">
   <% @charges.each do |charge| %>
-    <h4><%= charge.customer_name.titleize %></h4>
-
-      </div>
+    <h5>Customer Name: </h5>
+      <p> <%= charge.customer_name.titleize %> </p>
+    <h5>Donated Amount: </h5>
+    <p> <%= charge.amount %> </p>
+    <% if charge.product_id != nil %>
+      <h5>Product: CURRENTLY JUST PROD ID</h5> <p> <%= @products.find_by_id(charge.product_id).name %> </p>
+      <hr>
+    <% else %>
+      <h5>Product: </h5> <p>This product does not have an id</p>
+      <hr>
     <% end %>
-
-
+  <% end %>
 
 </div>
-
 </div>
 
 

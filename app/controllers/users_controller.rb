@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     # THIS SHOULD BE CHANGED
     @product = Product.last
-
+    @products = Product.all
     @charges = Charge.all
 
   end
