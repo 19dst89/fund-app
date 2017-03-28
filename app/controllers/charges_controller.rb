@@ -31,8 +31,11 @@ class ChargesController < ApplicationController
       :description => 'Donation to Project Fun(d)raiser'
     )
 
-    @charge = Charge.create(charge_params)
-
+    @charge = current_user.charges.create(charge_params)
+    # this assigns the charge to the most recently created product
+    # CHANGE this once
+    @product = Product.last
+    @product.charges << @charge
   end
 
   def show
