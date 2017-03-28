@@ -1,22 +1,48 @@
+<div class="container">
 
-<!-- testing -->
+
+  <%= form_tag charges_path do %>
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+  <!--     <label class="amount">
+        <span>Amount: $5.00</span> -->
+      </label>
+    </article>
+  <% end %>
+
+  <%= form_for @charge do |f| %>
+  <div class="form-group">
+   <div class="form-group">
+     <%= f.label :name %>
+     <%= f.text_field :customer_name, placeholder: "Full Name", class: "form-control cust-name", autofocus: true, :required => true %>
+   </div>
+   <div class="form-group">
+     <%= f.label :customer_email %>
+     <%= f.text_field :customer_email, placeholder: "Email", class: "form-control cust-email", autofocus: true, :required => true %>
+   </div>
+
+    <!-- THIS DOES NOT CHANGE THE AMOUNT BEING CHARGED YET -->
+   <div class="form-group">
+      <%= label_tag(:amount, 'Donation Amount:') %>
+      <%= text_field_tag(:amount) %>
+      <%= f.hidden_field :amount, id: "cust-amt" %>
+      <%= hidden_field_tag(:stripeToken) %>
+
+    </div>
+
+    <button id='donateButton'>Donate</button>
+
+  <% end %>
+
+<!-- OLD CODE ABOVE -->
 
 
-<%= form_tag charges_path do %>
-  <div id="error_explanation">
-    <% if flash[:error].present? %>
-      <p><%= flash[:error] %></p>
-    <% end %>
-  </div>
-  <article>
-    <%= label_tag(:amount, 'Donation Amount:') %>
-    <%= text_field_tag(:amount) %>
-  </article>
-  <article>
-    <%= hidden_field_tag(:stripeToken) %>
-  </article>
-  <button id='donateButton'>Donate</button>
-<% end %>
+
+</div>
 
 
 <script src="https://checkout.stripe.com/checkout.js"></script>
@@ -31,28 +57,34 @@ var handler = StripeCheckout.configure({
     $('form').submit();
   }
 });
-
 $('#donateButton').on('click', function(e) {
   e.preventDefault();
-
   $('#error_explanation').html('');
-
   var amount = $('input#amount').val();
   amount = amount.replace(/\$/g, '').replace(/\,/g, '')
-
   amount = parseFloat(amount);
+
+  var email = $('input#cust-email').val();
+  var name = $('input#cust-name').val();
+
+
 
   if (isNaN(amount)) {
     $('#error_explanation').html('<p>Please enter a valid amount in USD ($).</p>');
-  }
-  else if (amount < 5.00) {
+  } else if (amount < 5.00) {
     $('#error_explanation').html('<p>Donation amount must be at least $5.</p>');
   }
+  //   else if (email && name == nil){
+  //     $('#error_explanation').html('<p>Please fill in your name and email before submitting.</p>');
+  // }
   else {
     amount = amount * 100; // Needs to be an integer!
+    $('input#cust-amt').val(amount / 100);
     handler.open({
       amount: Math.round(amount)
-    })
+    });
+
   }
 });
 </script>
+
