@@ -8,12 +8,9 @@
           <p><%= flash[:error] %></p>
         </div>
       <% end %>
-
-      <!-- change this amount -->
-      <label class="amount">
-        <span>Amount: $5.00</span>
+  <!--     <label class="amount">
+        <span>Amount: $5.00</span> -->
       </label>
-
     </article>
   <% end %>
 
@@ -21,7 +18,7 @@
   <div class="form-group">
    <div class="form-group">
      <%= f.label :name %>
-     <%= f.text_field :customer_name, placeholder: "Full Name", class: "form-control cust-name", autofocus: true, required: true  %>
+     <%= f.text_field :customer_name, placeholder: "Full Name", class: "form-control cust-name", autofocus: true, :required => true %>
    </div>
    <div class="form-group">
      <%= f.label :customer_email %>
@@ -61,29 +58,29 @@ var handler = StripeCheckout.configure({
   }
 });
 
+
 $('#donateButton').on('click', function(e) {
   e.preventDefault();
-  $('#error_explanation').html('');
-  var amount = $('input#amount').val();
 
+  $('#error_explanation').html('');
+
+  var amount = $('input#amount').val();
   amount = amount.replace(/\$/g, '').replace(/\,/g, '')
+
   amount = parseFloat(amount);
 
-  if (isNaN(amount) || amount == nil) {
+  if (isNaN(amount)) {
     $('#error_explanation').html('<p>Please enter a valid amount in USD ($).</p>');
-  } else if (amount < 5.00) {
+  }
+  else if (amount < 5.00) {
     $('#error_explanation').html('<p>Donation amount must be at least $5.</p>');
   }
-  //   else if (email && name == nil){
-  //     $('#error_explanation').html('<p>Please fill in your name and email before submitting.</p>');
-  // }
   else {
     amount = amount * 100; // Needs to be an integer!
     $('input#cust-amt').val(amount / 100);
     handler.open({
       amount: Math.round(amount)
-    });
-
+    })
   }
 });
 </script>
