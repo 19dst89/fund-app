@@ -3,10 +3,11 @@
   <br>
   <h3 class="text-center">Welcome to your Dashboard, <%= current_user.first_name %></h3>
   <br>
+  <hr>
   <br>
 
   <div class="container">
-    <%= button_to "Add Customer", new_charge_path, :method => "get", class: "btn btn-primary" %>
+    <%= button_to "Add Customer", new_charge_path, :method => "get", class: "btn btn-info" %>
     <br>
     <div class="col-sm-6">
       <div class="row">
@@ -74,12 +75,14 @@
         <div class="table-responsive table-center">
             <table class="table table-bordered table-hover table-striped">
                 <thead>
+
                   <tr>
                     <th><%= sortable "Date" %></th>
                     <th><%= sortable "Customer" %></th>
                     <th><%= sortable "Donation" %></th>
                     <th><%= sortable "Product Id" %></th>
                   </tr>
+
                 </thead>
                 <tbody>
                   <% @charges.each do |charge| %>
