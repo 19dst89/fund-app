@@ -2,10 +2,11 @@
   <br>
   <h3 class="text-center">Welcome to your Dashboard, <%= current_user.first_name %></h3>
   <br>
+  <hr>
   <br>
 
   <div class="container">
-    <%= button_to "Add Customer", new_charge_path, :method => "get", class: "btn btn-primary" %>
+    <%= button_to "Add Customer", new_charge_path, :method => "get", class: "btn btn-info" %>
     <br>
     <div class="col-sm-6">
       <div class="row">
@@ -75,10 +76,10 @@
             <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
-                      <th><%= link_to "Date", :sort => "date" %></th>
-                      <th><%= link_to "Customer", :sort => "customer" %></th>
-                      <th><%= link_to "Donation Amount", :sort => "donation amount" %></th>
-                      <th><%= link_to "Product id", :sort => "product id" %></th>
+                      <th>Date </th>
+                      <th>Customer</th>
+                      <th>Donation Amount</th>
+                      <th>Product ID</th>
                     </tr>
                 </thead>
                 <tbody>
