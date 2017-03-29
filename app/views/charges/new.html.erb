@@ -27,20 +27,26 @@
      <%= f.text_field :customer_email, placeholder: "Email", class: "form-control",  id:"cust-email", autofocus: true, :required => true %>
    </div>
 
-    <!-- THIS DOES NOT CHANGE THE AMOUNT BEING CHARGED YET -->
+
+
    <div class="form-group">
       <%= label_tag(:amount, 'Donation Amount:') %>
       <%= text_field_tag(:amount) %>
       <%= f.hidden_field :amount, id: "cust-amt" %>
+
       <%= hidden_field_tag(:stripeToken) %>
 
     </div>
 
-    <button id='donateButton'>Donate</button>
-
+    <button class="btn btn-primary", id='donateButton'>Donate</button>
+  <br>
   <% end %>
-
-<!-- OLD CODE ABOVE -->
+  <br>
+  <!-- prevents donations from being less than min price set in product -->
+  <div class="form-group">
+      <p>Minimum: $<%= @product.min_price %></p>
+      <%= hidden_field_tag :min_price, @product.min_price %>
+    </div>
 
 
 
@@ -72,14 +78,14 @@ $('#donateButton').on('click', function(e) {
 
   var email = $('input#cust-email').val()
   var name = $('input#cust-name').val()
-
+  var minPrice = $('input#min_price').val()
 
 
   if (isNaN(amount) || (amount == "")) {
     $('#error_explanation').html('<p class="alert alert-danger">Please enter a valid amount in USD ($).</p>');
     }
-  else if (amount < 5.00) {
-    $('#error_explanation').html('<p class="alert alert-danger">Donation amount must be at least $5.</p>');
+  else if (amount < minPrice) {
+    $('#error_explanation').html('<p class="alert alert-danger">Donation amount must be equal to or higher than the minimum price.</p>');
   }
   else if (name == "") {
     $('#error_explanation').html('<p class="alert alert-danger">Please enter your full name.</p>');
