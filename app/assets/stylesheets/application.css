@@ -16,9 +16,9 @@
  */
 
 
-#countdown{
+div.countdown{
   color: red;
-  text-align: right;
+  text-align: center;
 }
 
 

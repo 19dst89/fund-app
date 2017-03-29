@@ -19,7 +19,7 @@
                         <%= image_tag @product.avatar, class: "card-img-top img-responsive"%>
                         <% end %>
                         <div class="card-block">
-                            <h3 class="card-title pull-right">$<%= @product.min_price %></h3>
+                            <h3 class="card-title pull-left">$<%= @product.min_price %></h3>
                             <br>
                             <br>
                             <br>
@@ -53,6 +53,9 @@
 <h5>  We have already raised  </h5>
 <h4> $<%= @product.total_donated_amount %>  </h4>
 <br>
+<h5> Donate, before the fundraiser ends in </h5>
+
+<div id="countdown"></div>
 <hr>
 
 
