@@ -34,7 +34,7 @@
 <!-- TEST -->
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <title>Fun(d)raiser</title>
     <%= csrf_meta_tags %>
 
@@ -72,8 +72,7 @@
         </div>
     </nav>
 
-    <div id="countdown">
-    </div>
+<div id="countdown"></div>
 
     <% flash.each do |name, msg| %>
       <div class="alert <%= name == 'error' ? 'alert-danger' : 'alert-info' %>">
@@ -84,6 +83,7 @@
     <% end %>
 
     <%= yield %>
+
 
 
     <div class="footer-basic text-center">

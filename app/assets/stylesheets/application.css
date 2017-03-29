@@ -16,7 +16,10 @@
  */
 
 
-
+#countdown{
+  color: red;
+  text-align: right;
+}
 
 
 .breadcrumb {
@@ -83,6 +86,3 @@ nav.navbar.navbar-default {
     text-align:right;
   }
 }
-
-
-
