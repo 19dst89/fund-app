@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
   root to: "products#main"
-
   # User Routes
   get '/users/:id', to: 'users#show', as: 'user'
+  patch "/users/:id", to: "users#update"
+
+  get '/users/:id/edit', to: 'users#edit', as: "user_edit"
 
 
   # Product Routes
