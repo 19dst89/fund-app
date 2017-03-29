@@ -1,4 +1,5 @@
 <div class="container">
+<span><%= link_to "Edit user", user_edit_path(@user.id) %></span>
   <br>
   <h3 class="text-center">Welcome to your Dashboard, <%= current_user.first_name %></h3>
   <br>
@@ -58,7 +59,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 </div>
@@ -74,12 +74,12 @@
         <div class="table-responsive table-center">
             <table class="table table-bordered table-hover table-striped">
                 <thead>
-                    <tr>
-                      <th><%= link_to "Date", :sort => "date" %></th>
-                      <th><%= link_to "Customer", :sort => "customer" %></th>
-                      <th><%= link_to "Donation Amount", :sort => "donation amount" %></th>
-                      <th><%= link_to "Product id", :sort => "product id" %></th>
-                    </tr>
+                  <tr>
+                    <th><%= sortable "Date" %></th>
+                    <th><%= sortable "Customer" %></th>
+                    <th><%= sortable "Donation" %></th>
+                    <th><%= sortable "Product Id" %></th>
+                  </tr>
                 </thead>
                 <tbody>
                   <% @charges.each do |charge| %>
