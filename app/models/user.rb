@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :email,
     presence: true,
     uniqueness: true,
-    length: {maximum: 250},
+    length: {maximum: 100},
     format: {
       with: /@/,
       message: "not a valid format"
