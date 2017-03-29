@@ -4,8 +4,8 @@ RSpec.describe User, :type => :model do
   it "is valid with valid attributes" do
     expect(User.new).to be_valid
   end
-  it "is not valid without a title" do
-  user = User.new(title: nil)
+  it "is not valid without a last_name" do
+  user = User.new(last_name: nil)
   expect(user).to_not be_valid
 end
   it "is not valid without a description"
