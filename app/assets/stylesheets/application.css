@@ -87,6 +87,7 @@ nav.navbar.navbar-default {
 }
 
 .footer-basic {
+  width: 100%;
   padding:0px 20;
   background-color:#ffffff;
   padding-top:30px;
