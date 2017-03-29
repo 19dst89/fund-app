@@ -1,23 +1,65 @@
+<br>
+<br>
+<br>
 
-    <div class="container">
-        <div class="row product">
-            <div class="container col-md-5 col-md-offset-1">
-                <div class="clearfix">
-                    <%= image_tag @product.avatar, class: "img-responsive"%>
-                    <img src="#">
-                </div>
-                </div>
+<div class="container">
+    <hr>
+<div class="col-sm-6">
+  <div class="row">
+    <div class="col-sm-12">
+        <div class="container">
+            <div class="row product row-centered" style="width: 65rem;">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h2 class="text-center"><%= @product.name %></h2>
+                    <hr>
+                    <div class="card mb-3 col-centered">
+                        <% if @product.avatar == "" %>
+                        <img class="card-img-top img-responsive" src="http://shashgrewal.com/wp-content/uploads/2015/05/default-placeholder.png" alt="Product Image">
+                        <% else %>
+                        <%= image_tag @product.avatar, class: "card-img-top img-responsive"%>
+                        <% end %>
+                        <div class="card-block">
+                            <h3 class="card-title pull-right">$<%= @product.min_price %></h3>
+                            <br>
+                            <br>
+                            <br>
+                            <h5 class="card-text"><%= @product.description %></h5>
+                            <p class="card-text"><small class="text-muted">Only <%= @product.inventory_amount %> left!</small></p>
+                        </div>
 
-                <hr>
-                <div class="container col-md-offset-1">
-                <h2 class="text-center"> <small>Total donated amount: </small>$<%= @product.total_donated_amount %> </h2>
+                        <%= button_to "Donate", new_charge_path, :method => "get", class: "btn btn-info" %>
+                    </div>
                 </div>
-        </div>
-        <div class="col-md-5 col-md-offset-0">
-            <h3 class="text-right">$<%= @product.min_price %></h3>
-            <h2><%= @product.name %></h2>
-            <h4><%= @product.description %>
-                </h4>
-            <%= button_to "Donate", new_charge_path, :method => "get", class: "btn btn-primary" %>
+            </div>
         </div>
     </div>
+
+
+</div>
+
+</div>
+
+<div class="col-sm-6">
+    <div class="row">
+        <div class="col-sm-6 card">
+            <div class="row card-block text-center">
+            <br>
+            <br>
+<hr>
+<br>
+<h5> With the help of donors like you...</h5>
+<br>
+<br>
+<h5>  We have already raised  </h5>
+<h4> $<%= @product.total_donated_amount %>  </h4>
+<br>
+<hr>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
