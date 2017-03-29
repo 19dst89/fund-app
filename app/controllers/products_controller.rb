@@ -1,5 +1,12 @@
 class ProductsController < ApplicationController
 
+  def main
+    @product = Product.last
+    @products = Product.all
+    @users = User.all
+    @charges = Charge.all
+  end
+
   def index
     @products = Product.all
     @users = User.all
@@ -16,6 +23,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    product_params[:inventory_amount] = 0
     @product = Product.create(product_params)
     redirect_to @product
   end
@@ -34,7 +42,7 @@ class ProductsController < ApplicationController
 
   def destroy
     product_id = params[:id]
-    @product = Product.find_by_id(product_id)
+    @product = Product.find(product_id)
     @product.destroy
     redirect_to products_path
   end

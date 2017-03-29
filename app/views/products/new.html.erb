@@ -1,48 +1,13 @@
-<div class=" container jumbotron">
-
-<h1>New Product</h1>
-
-<%= form_for @product do |f| %>
-
-
+<div class="container">
+  <h1 class= "text-center">New Product</h1>
   <div class="row">
-    <div class="my-input">
-      <%= label_tag(:name, ' Name:') %>
-      <%= f.text_field :name, placeholder:' Mr. Potato Head', autofocus: true, :required => true  %></div>
-  </div>
+    <div class="col-md-6 col-md-offset-3">
 
-  <div class="row">
-    <div class="my-input">
-      <%= label_tag(:description, ' Description:') %>
-      <%= f.text_field :description, placeholder:' The classic, face-changing friend for kids', autofocus: true, :required => true  %></div>
-  </div>
+      <%= render "form", product: @product %>
 
-  <div class="row">
-    <div class="my-input">
-      <%= label_tag(:min_price, ' Minimum Price Accepted:') %>
-      <%= f.text_field :min_price, placeholder:' ex: 5 (Please only enter whole numbers without a dollar sign)', autofocus: true, :required => true  %></div>
+      </div>
+    </div>
   </div>
-
-  <div class="row">
-    <%= f.hidden_field :total_donated_amount, :value => 0 %>
-  </div>
-
-  <div class="row">
-    <%= label_tag(:inventory_amount, ' Starting Inventory Amount:') %>
-    <div class="my-input"><%= f.text_field :inventory_amount, placeholder:' ex: 100', autofocus: true, :required => true  %></div>
-  </div>
-
-  <div class="row">
-    <%= label_tag(:avatar, ' Product Image URL:') %>
-
-   <!-- REMINDER PIC NEEDS TO BE ENTERED HERE!!!! -->
-   <!-- A PIC IS NOT A STRING, IN THE REAL WORLD!!!! -->
-    <div class="my-input"><%= f.text_field :avatar, placeholder:' www.example.com/image.jpg', autofocus: true %></div>
-  </div>
-  <div class="row">
-    <br>
-  <%= f.submit 'Register Product' %>
-  </div>
-  <% end %>
-
 </div>
+
+

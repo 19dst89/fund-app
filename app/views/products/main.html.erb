@@ -1,0 +1,23 @@
+
+    <div class="container">
+        <div class="row product">
+            <div class="container col-md-5 col-md-offset-1">
+                <div class="clearfix">
+                    <%= image_tag @product.avatar, class: "img-responsive"%>
+                    <img src="#">
+                </div>
+                </div>
+
+                <hr>
+                <div class="container col-md-offset-1">
+                <h2 class="text-center"> <small>Total donated amount: </small>$<%= @product.total_donated_amount %> </h2>
+                </div>
+        </div>
+        <div class="col-md-5 col-md-offset-0">
+            <h3 class="text-right">$<%= @product.min_price %></h3>
+            <h2><%= @product.name %></h2>
+            <h4><%= @product.description %>
+                </h4>
+            <%= button_to "Donate", new_charge_path, :method => "get", class: "btn btn-primary" %>
+        </div>
+    </div>
