@@ -1,11 +1,10 @@
-<div class="container jumbotron">
-<%= form_for @product do |f| %>
-   <%= f.text_field :name %>
-   <%= f.text_area :description %>
-   <%= f.text_field :min_price %>
-   <%= f.text_area :total_donated_amount %>
-   <%= f.text_field :inventory_amount %>
-   <%= f.text_area :avatar %>
-   <%= f.submit "Save Product" %>
- <% end %>
- </div>
+<div class="container">
+  <h1 class="text-center">Edit Product</h1>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <%= render "form", product: @product %>
+
+    </div>
+  </div>
+</div>
