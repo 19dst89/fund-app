@@ -1,5 +1,12 @@
 class ProductsController < ApplicationController
 
+  def main
+    @product = Product.last
+    @products = Product.all
+    @users = User.all
+    @charges = Charge.all
+  end
+
   def index
     @products = Product.all
     @users = User.all
@@ -16,6 +23,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+    product_params[:inventory_amount] = 0
     @product = Product.create(product_params)
     redirect_to @product
   end
