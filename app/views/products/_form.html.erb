@@ -6,14 +6,14 @@
     </div>
     <div class="form-group">
       <%= f.label :description %>
-      <%= f.text_field :description, placeholder: "Product Description", class: "form-control", autofocus: true, :required => true %>
+      <%= f.text_field :description, placeholder: "Must be under 500 characters", class: "form-control", autofocus: true, :required => true %>
     </div>
     <div class="form-group">
-      <%= f.label :min_price %>
+      <%= f.label :minimum_price %>
       <%= f.text_field :min_price, placeholder: "Minimum Acceptable price", class: "form-control", autofocus: true, :required => true %>
     </div>
     <div class="form-group">
-      <%= f.label :image %>
+      <%= f.label :image_url %>
       <%= f.text_field :avatar, placeholder: " www.example.com/image.jpg", class: "form-control", autofocus: true %>
     </div>
     <div class="form-group">
