@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :charges, except: [:edit, :update, :destroy]
 
 
+  # obsolete code, unused routes, should be removed.
   # Transactions Routes
   get "/transactions", to: "transactions#index", as: "transactions"
     # New Transaction

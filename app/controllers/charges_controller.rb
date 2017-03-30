@@ -1,6 +1,9 @@
 class ChargesController < ApplicationController
+  # still no hooks X_X
 
 
+
+  # not finished
   def index
     @charges = Charge.all
   end
@@ -17,6 +20,8 @@ class ChargesController < ApplicationController
 
     @amount = @amount.gsub('$', '').gsub(',', '')
 
+    # The Stripe::CardError will not happen until you create a charge; it DEFINITELY
+    # won't happen when you round a number.
     begin
       @amount = Float(@amount).round(2)
     rescue Stripe::CardError => e
@@ -26,6 +31,8 @@ class ChargesController < ApplicationController
 
     @amount = (@amount * 100).to_i
 
+    # this doesn't actually respect the entered minimum price.
+    # should reference the product that's in the db.
     if @amount < 500
       flash[:error] = 'Charge not completed. Donation amount must be greater than or equal to the minimum price.'
       redirect_to new_charge_path
@@ -45,6 +52,7 @@ class ChargesController < ApplicationController
     @product = Product.last
     @product.charges << @charge
 
+    # doesn't need to be reset. this is still the same product.
     @product = @charge.product
     @product.total_donated_amount = @product.total_donated_amount + @charge.amount
 
@@ -52,9 +60,11 @@ class ChargesController < ApplicationController
 
     if @charge.save && @product.save
       redirect_to root_path
+      # but what if they don't both save? error handling is missing here.
     end
   end
 
+  # another unnecessary route/action/view.
   def show
     @charge = Charge.find_by_id(params[:id])
 

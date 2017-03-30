@@ -3,6 +3,7 @@
   <div class="col-md-6 col-md-offset-3">
     <h2 class="article-title text-center"><%= @product.name %></h2>
     <br>
+    <!-- strong is not semantic html :( -->
     <h4><strong>Description: </strong><%= @product.description %></h4>
     <h4><strong>Minimum Price: </strong> <%= @product.min_price %> </h4>
     <h4><strong>Remaining Inventory: </strong> <%= @product.inventory_amount %> </h4>

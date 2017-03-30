@@ -1,5 +1,5 @@
 <%= form_for @user do |f| %>
-   <div class="form-group">
+  <div class="form-group">
     <div class="form-group">
       <%= f.label :emaile %>
       <%= f.text_field :email, placeholder: "Email", class: "form-control", autofocus: true, :required => true %>
@@ -14,6 +14,6 @@
     </div>
   </div>
   <div class="actions">
-    <%= f.submit "Save", class: "btn btn-block tip-button" %>
+    <%= f.submit "Save", class: "btn btn-block" %>
   </div>
 <% end %>

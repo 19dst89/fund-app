@@ -1,3 +1,5 @@
+# isn't used, shouldn't be there, dead code :( X_X
+
 class TransactionsController < ApplicationController
 
   def index

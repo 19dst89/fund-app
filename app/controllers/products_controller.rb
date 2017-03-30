@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    # no auth. anyone can make a product.
     @product = Product.new
   end
 
@@ -23,17 +24,20 @@ class ProductsController < ApplicationController
   end
 
   def create
+    # also no auth.
     product_params[:inventory_amount] = 0
     @product = Product.create(product_params)
     redirect_to @product
   end
 
   def edit
+    # also no auth.
     product_id = params[:id]
     @product = Product.find_by_id(product_id)
   end
 
   def update
+    # also no auth.
     product_id = params[:id]
     @product = Product.find_by_id(product_id)
     @product.update_attributes(product_params)
@@ -41,6 +45,8 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    # also no auth. and doesn't correctly handle what happens if there are
+    # associated charges.
     product_id = params[:id]
     @product = Product.find(product_id)
     @product.destroy
