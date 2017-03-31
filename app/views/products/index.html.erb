@@ -1,23 +1,6 @@
-<h1>All of the Products</h1>
-
-<ul>
-<% @products.each do |product| %>
-  <li><%= product.name %></li>
-  <li><%= product.description %></li>
-  <li>Total Donated: <%= product.total_donated_amount %></li>
-  <li>Amount Left: <%= product.inventory_amount %></li>
-  <% product.charges.each do |charge| %>
-    <ul>
-      <li>Customer Name: <%= charge.customer_name %></li>
-      <li>Donation: <%= charge.amount %></li>
-    </ul>
-  <% end %>
-<% end %>
-
-</ul>
 
 <div class="container">
-  <hr><h3 class="text-center"> Recent Donations</h3><hr>
+  <hr><h3 class="text-center"> All Products</h3><hr>
   <div class="row">
     <div class="col-lg-12">
       <div class="table-responsive table-center">
@@ -25,24 +8,21 @@
               <thead>
 
                 <tr>
-                  <th><%= sortable "Product Name" %></th>
-                  <th><%= sortable "Description" %></th>
-                  <th><%= sortable "Total Donated" %></th>
-                  <th><%= sortable "Product Id" %></th>
+                  <th><%= "Date Added" %></th>
+                  <th><%= "Product Name" %></th>
+                  <th><%= "Total Donated" %></th>
+                  <th><%= "Product Id" %></th>
                 </tr>
 
               </thead>
               <tbody>
-                <% @charges.each do |charge| %>
+                <% @products.each do |product| %>
                   <tr>
-                      <td><%= (charge.created_at).strftime("%b %d, %Y")  %> </td>
-                      <td><%= charge.customer_name.titleize %> </td>
-                      <td>$<%= charge.amount %> </td>
-                      <% if charge.product_id == nil %>
-                        <td> n/a </td>
-                      <% else %>
-                        <td><%= charge.product_id %> </td>
-                      <% end %>
+                      <td><%= (product.created_at).strftime("%b %d, %Y")  %> </td>
+                      <td><%= link_to "#{product.name}", product_path(product) %>
+                      </td>
+                      <td>$<%= product.total_donated_amount %> </td>
+                      <td><%= product.id %> </td>
 
                   </tr>
                 <% end %>

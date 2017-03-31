@@ -12,8 +12,9 @@
 
 
     <span><%= link_to "Edit Product", edit_product_path(@product.id) %></span>
-
+    <br>
+    <span><%= link_to "All Products", products_path %></span>
     <hr>
-    <%= button_to " Delete Product ", {action:"destroy", id: @product.id}, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <span class="pull-right"><%= button_to " Delete Product ", {action:"destroy", id: @product.id}, method: :delete, data: { confirm: 'Are you sure?' } %></span>
   </div>
 </div>
