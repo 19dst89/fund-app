@@ -1,9 +1,4 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+# Fun(d)raiser
 
 * Built with Ruby version v 5.0.2
 
@@ -16,7 +11,11 @@ Things you may want to cover:
 
 Description:
 
-This is a application that is intended for an organization (most likely a non-profit), to assist with the sale of items.  Customer will call in to the 800 number listed on the main page.  The backend would be controlled by an employee/volunteer at the organization.  The employee/volunteer would:
+This is a management system application that is intended for non-profits or other organizations that need to raise funds.  The user can sign up to upload products that will be displayed on the main page, specifically an image, title, description, and the minimum price that the item will be sold for.  The public can make a donation
+
+Customer will call in to the 800 number listed on the main page.  The backend would be controlled by an employee/volunteer at the organization.
+
+The employee/volunteer would:
 
 1. Enter the Customer's name and email address.
 2. Be redirected to a payment window (using Stripe Gem)

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  def index
-    @users = User.order(params[:sort])
-  end
+
+  before_action :current_user?
+
+
 
   def show
     if check_id?(params[:id])
@@ -38,12 +39,16 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :first_name, :last_name)
   end
 
-
   def check_id?(params)
-    if User.exists?(params)
-      true
-    else
-      false
+    User.exists?(params)
+  end
+
+  def current_user?
+    if (current_user != User.find(params[:id]))
+      flash[:danger] = "Not authorized to view page."
+      redirect_to root_path
     end
   end
+
+
 end
