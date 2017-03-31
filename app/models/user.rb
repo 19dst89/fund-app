@@ -3,8 +3,6 @@ class User < ApplicationRecord
   has_many :charges
   has_many :products, through: :charges
 
-  has_many :transactions
-  has_many :products, through: :transactions
 
   validates :first_name, presence: true, length: {maximum: 50}
   validates :last_name, presence: true, length: {maximum: 50}
