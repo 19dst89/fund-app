@@ -13,6 +13,8 @@ class ChargesController < ApplicationController
 
   def create
 
+    @product = Product.last
+
     @amount = params[:amount]
 
     @amount = @amount.gsub('$', '').gsub(',', '')
@@ -26,7 +28,7 @@ class ChargesController < ApplicationController
 
     @amount = (@amount * 100).to_i
 
-    if @amount < 500
+    if @amount < @product.min_price
       flash[:error] = 'Charge not completed. Donation amount must be greater than or equal to the minimum price.'
       redirect_to root_path
       return
@@ -42,7 +44,7 @@ class ChargesController < ApplicationController
     @charge = Charge.create(charge_params)
     # this assigns the charge to the most recently created product
     # Should provide choice later
-    @product = Product.last
+
     @product.charges << @charge
 
     @product = @charge.product
