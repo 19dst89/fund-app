@@ -4,7 +4,7 @@ class Charge < ApplicationRecord
 
 
   validates :customer_name, presence: true, length: {maximum: 60}
-  validates :amount, :user_id, :product_id, presence: true, :numericality => true
+  validates :amount, :product_id, presence: true, :numericality => true
 
 
 end
