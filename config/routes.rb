@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
 
   # Stripe Charges
-  resources :charges, except: [:edit, :update, :destroy]
+  resources :charges, only: [:index, :new, :create]
+    
 
 end

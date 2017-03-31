@@ -8,7 +8,6 @@ class ChargesController < ApplicationController
   def new
     @product = Product.last
     @charge = Charge.new
-
   end
 
   def create
@@ -55,10 +54,6 @@ class ChargesController < ApplicationController
     end
   end
 
-  def show
-    @charge = Charge.find_by_id(params[:id])
-
-  end
 
   private
 
