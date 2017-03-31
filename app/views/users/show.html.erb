@@ -1,5 +1,4 @@
 <div class="container">
-<span><%= link_to "Edit user", user_edit_path(@user.id) %></span>
   <br>
   <h3 class="text-center">Welcome to your Dashboard, <%= current_user.first_name %></h3>
   <br>
@@ -8,6 +7,10 @@
 
   <div class="container">
     <%= button_to "Add Customer", new_charge_path, :method => "get", class: "btn btn-info" %>
+    <%= button_to "See Current Product", product_path(@product), :method => "get", class: "btn btn-primary pull-right" %>
+    <br>
+    <span class="pull-left"><%= link_to "Edit Profile", user_edit_path(@user.id) %></span>
+    <br>
     <br>
     <div class="col-sm-6">
       <div class="row">
@@ -41,7 +44,7 @@
         <div class="col-sm-12">
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h3 class="panel-title text-center">Total Donors</h3>
+              <h3 class="panel-title text-center">Total Donors for <%= link_to "Current Product", product_path(@product) %></h3>
             </div>
             <div class="panel-body text-center">
               <h4><%= @charges.length %></h4>
