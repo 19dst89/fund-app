@@ -13,47 +13,51 @@ class ChargesController < ApplicationController
 
   def create
 
-    @product = Product.last
+    if charge_params
 
-    @amount = params[:amount]
+      @product = Product.last
 
-    @amount = @amount.gsub('$', '').gsub(',', '')
+      @amount = params[:amount]
 
-    begin
-      @amount = Float(@amount).round(2)
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to new_charge_path
-    end
+      @amount = @amount.gsub('$', '').gsub(',', '')
 
-    @amount = (@amount * 100).to_i
+      begin
+        @amount = Float(@amount).round(2)
+      rescue Stripe::CardError => e
+        flash[:error] = e.message
+        redirect_to new_charge_path
+      end
 
-    if @amount < @product.min_price
-      flash[:error] = 'Charge not completed. Donation amount must be greater than or equal to the minimum price.'
+      @amount = (@amount * 100).to_i
+
+      if @amount < @product.min_price
+        flash[:error] = 'Charge not completed. Donation amount must be greater than or equal to the minimum price.'
+        redirect_to root_path
+        return
+      end
+
+      Stripe::Charge.create(
+        :amount => @amount,
+        :currency => 'usd',
+        :source => params[:stripeToken],
+        :description => 'Donation to Project Fun(d)raiser'
+      )
+
+      @charge = Charge.create(charge_params)
+      # this assigns the charge to the most recently created product
+      # Should provide choice later
+
+      @product.charges << @charge
+
+      @product = @charge.product
+      @product.total_donated_amount = @product.total_donated_amount + @charge.amount
+
+      @product.inventory_amount = @product.inventory_amount - 1
+
+      flash[:notice] = "Thank you for your donation!"
       redirect_to root_path
-      return
-    end
-
-    Stripe::Charge.create(
-      :amount => @amount,
-      :currency => 'usd',
-      :source => params[:stripeToken],
-      :description => 'Donation to Project Fun(d)raiser'
-    )
-
-    @charge = Charge.create(charge_params)
-    # this assigns the charge to the most recently created product
-    # Should provide choice later
-
-    @product.charges << @charge
-
-    @product = @charge.product
-    @product.total_donated_amount = @product.total_donated_amount + @charge.amount
-
-    @product.inventory_amount = @product.inventory_amount - 1
-
-    if @charge.save && @product.save
-      redirect_to root_path
+    else
+      flash[:error] = "Payment failed"
     end
   end
 
