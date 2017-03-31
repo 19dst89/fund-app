@@ -29,16 +29,7 @@ Rails.application.routes.draw do
 
 
   # Stripe Charges
-  resources :charges, except: [:edit, :update, :destroy]
-
-
-  # Transactions Routes
-  get "/transactions", to: "transactions#index", as: "transactions"
-    # New Transaction
-  get "/transactions/new", to: "transactions#new", as: "new_transaction"
-    # Show Transaction
-  get "/transactions/:id", to: "transactions#show", as: "transaction"
-    # Make New Transaction
-  post "/transactions", to: "transactions#create"
+  resources :charges, only: [:index, :new, :create]
+    
 
 end
