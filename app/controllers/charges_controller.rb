@@ -28,7 +28,7 @@ class ChargesController < ApplicationController
 
     if @amount < 500
       flash[:error] = 'Charge not completed. Donation amount must be greater than or equal to the minimum price.'
-      redirect_to new_charge_path
+      redirect_to root_path
       return
     end
 
@@ -39,7 +39,7 @@ class ChargesController < ApplicationController
       :description => 'Donation to Project Fun(d)raiser'
     )
 
-    @charge = current_user.charges.create(charge_params)
+    @charge = Charge.create(charge_params)
     # this assigns the charge to the most recently created product
     # Should provide choice later
     @product = Product.last
