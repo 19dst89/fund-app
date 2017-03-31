@@ -6,7 +6,7 @@
     <div class="row product">
         <div class="col-md-5 col-md-offset-0">
             <div class=""></div>
-            <% if @product.avatar == "" %>
+            <% if (@product.avatar == "") || (@product.avatar == nil)  %>
             <img class="card-img-top img-responsive" src="http://shashgrewal.com/wp-content/uploads/2015/05/default-placeholder.png" alt="Product Image">
             <% else %>
             <%= image_tag @product.avatar, class: "card-img-top img-responsive"%>

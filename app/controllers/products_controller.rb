@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  before_action :require_login, except: [:main]
+
   def main
     @product = Product.last
     @products = Product.all
@@ -13,13 +15,18 @@ class ProductsController < ApplicationController
     @charges = Charge.all
   end
 
-  def new
-    @product = Product.new
-  end
-
   def show
     product_id = params[:id]
     @product = Product.find_by_id(product_id)
+  end
+
+  def new
+    if signed_in?
+      @product = Product.new
+    else
+      flash[:notice] = "Log in to create a new product"
+      redirect_to root_path
+    end
   end
 
   def create
@@ -40,6 +47,7 @@ class ProductsController < ApplicationController
     redirect_to product_path(@product)
   end
 
+## need to se archive or something
   def destroy
     product_id = params[:id]
     @product = Product.find(product_id)
@@ -51,6 +59,13 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :description, :min_price, :total_donated_amount, :inventory_amount, :avatar)
+  end
+
+  def require_login
+    if !(signed_in?)
+      flash[:danger] = "Please log in."
+      redirect_to root_path
+    end
   end
 
 end
