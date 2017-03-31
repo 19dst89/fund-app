@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :current_user?
-
+  before_action :set_user, except: [:show]
 
 
   def show
@@ -17,17 +17,12 @@ class UsersController < ApplicationController
     @product = Product.last
     @products = Product.all
     @charges = Charge.all
-
   end
 
   def edit
-    user_id = params[:id]
-    @user = User.find_by_id(user_id)
   end
 
   def update
-    user_id = params[:id]
-    @user = User.find_by_id(user_id)
     @user.update_attributes(user_params)
     redirect_to user_path(@user)
   end
@@ -39,6 +34,11 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :first_name, :last_name)
   end
 
+  def set_user
+    user_id = params[:id]
+    @user = User.find_by_id(user_id)
+  end
+
   def check_id?(params)
     User.exists?(params)
   end
@@ -46,7 +46,11 @@ class UsersController < ApplicationController
   def current_user?
     if (current_user != User.find(params[:id]))
       flash[:danger] = "Not authorized to view page."
-      redirect_to root_path
+      if signed_in?
+        redirect_to user_path(current_user)
+      else
+        redirect_to root_path
+      end
     end
   end
 
