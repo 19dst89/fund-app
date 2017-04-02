@@ -3,10 +3,33 @@
   <div class="col-md-6 col-md-offset-3">
     <h2 class="article-title text-center"><%= @product.name %></h2>
     <br>
-    <h4><strong>Description: </strong><%= @product.description %></h4>
-    <h4><strong>Minimum Price: </strong> <%= @product.min_price %> </h4>
-    <h4><strong>Remaining Inventory: </strong> <%= @product.inventory_amount %> </h4>
-    <h4><strong>Total Donations: </strong> $<%= @product.total_donated_amount %> </h4>
+    <h4><strong>Description: </strong></h4>
+        <% if @product != nil %>
+            <h4><%= @product.description %></h4>
+        <% else %>
+            <h4>n/a</h4>
+        <% end %>
+
+    <h4><strong>Minimum Price: </strong>
+        <% if @product != nil %>
+            <%= @product.min_price %> </h4>
+        <% else %>
+            <h4>n/a</h4>
+        <% end %>
+
+    <h4><strong>Remaining Inventory: </strong> </h4>
+        <% if @product != nil %>
+           <h4><%= @product.inventory_amount %></h4>
+        <% else %>
+            <h4>n/a</h4>
+        <% end %>
+
+    <h4><strong>Total Donations: </strong></h4>
+        <% if @product != nil %>
+           <h4>$<%= @product.total_donated_amount %></h4>
+        <% else %>
+            <h4>n/a</h4>
+        <% end %>
 
     <hr>
 
