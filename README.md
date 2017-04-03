@@ -1,13 +1,18 @@
 # Fun(d)raiser
 
-* Built with Ruby version v 5.0.2
+# Technologies used
+- Ruby on Rails
+- JavaScript
+- jQuery
+- HTML
+- CSS
 
 ****** Gems Used *******
-# Bootstrap-sass
-# Turbolinks
-# jbuilder
-# Devise
-# Stripe
+- Bootstrap-sass
+- Turbolinks
+- jbuilder
+- Devise
+- Stripe
 
 Description:
 
@@ -23,14 +28,14 @@ The employee/volunteer would:
 
 # Demo
 
-Check out a demo at fun-d-raiser.herokuapp.com
+Check out a demo at <a href="fun-d-raiser.herokuapp.com">fun-d-raiser.herokuapp.com</a>
 
-username: jane@doe.com
-password: 123456
+username: jane@doe.com <br>
+password: 123456 <br>
 
-credit card number: 4242 4242 4242 4242
-exp: anytime in the future
-cvc: any 3 digits
+credit card number: 4242 4242 4242 4242 <br>
+exp: anytime in the future <br>
+cvc: any 3 digits <br>
 
 # To use
 
@@ -46,7 +51,7 @@ and you're all set!
 
 # Contributers
 
-Christen Williams
-Daniel Thompson
-Timothy Smith
+Christen Williams <br>
+Daniel Thompson <br>
+Timothy Smith <br>
 
