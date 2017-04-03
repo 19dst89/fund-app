@@ -16,7 +16,9 @@ class UsersController < ApplicationController
     # THIS SHOULD BE CHANGED
     @product = Product.last
     @products = Product.all
-    @charges = @product.charges
+    if @product != nil
+      @charges = @product.charges
+    end
   end
 
   def edit

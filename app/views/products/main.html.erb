@@ -6,30 +6,35 @@
     <div class="row product">
         <div class="col-md-5 col-md-offset-0">
             <div class=""></div>
-            <% if (@product.avatar == "") || (@product.avatar == nil)  %>
+            <% if (@product == nil) || (@product.avatar == "") || (@product.avatar == nil)  %>
             <img class="card-img-top img-responsive" src="http://shashgrewal.com/wp-content/uploads/2015/05/default-placeholder.png" alt="Product Image">
             <% else %>
             <%= image_tag @product.avatar, class: "card-img-top img-responsive"%>
             <% end %>
 
     </div>
-    <div class="col-md-5 col-md-offset-0">
-        <h3 class="text-right">$<%= @product.min_price %></h3>
-        <h2><%= @product.name %></h2>
-        <p> <%= @product.description %> Sed mollis, urna eu tempus facilisis, diam tellus aliquam tortor, et vestibulum ante quam non justo. Nullam luctus rutrum mattis. Maecenas in pharetra mi, vel mollis odio. Morbi non mauris massa. </p>
-        <p class="card-text"><small class="text-muted"> Only <%= @product.inventory_amount %> left!</small></p>
-        <p><small>Click or call 800 555 5555 </small></p>
-        <%= button_to "Donate", new_charge_path, :method => "get", class: "btn btn-info" %>
-        <hr>
-        <h5> With the help of donors like you...</h5>
-        <br>
-        <h5>  We have already raised  </h5>
-        <h4> $<%= @product.total_donated_amount %>  </h4>
-        <br>
-        <h5> Donate, before the fundraiser ends </h5>
-        <div class="pull-left" id="countdown"></div>
-        <br>
-        <hr>
-    </div>
+    <% if (@product != nil) %>
+        <div class="col-md-5 col-md-offset-0">
+            <h3 class="text-right">
+            $<%= @product.min_price %></h3>
+            <h2><%= @product.name %></h2>
+            <p> <%= @product.description %> </p>
+            <p class="card-text"><small class="text-muted"> Only <%= @product.inventory_amount %> left!</small></p>
+            <p><small>Click or call 800 555 5555 </small></p>
+            <%= button_to "Donate", new_charge_path, :method => "get", class: "btn btn-info" %>
+            <hr>
+            <h5> With the help of donors like you...</h5>
+            <br>
+            <h5>  We have already raised  </h5>
+            <h4> $<%= @product.total_donated_amount %>  </h4>
+            <br>
+            <h5> Donate, before the fundraiser ends </h5>
+            <div class="pull-left" id="countdown"></div>
+            <br>
+            <hr>
+        </div>
+    <% else %>
+        <h2>No product at this time</h2>
+    <% end %>
 
 </div>
